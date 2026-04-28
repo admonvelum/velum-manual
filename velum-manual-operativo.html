@@ -2600,7 +2600,7 @@
 
 
 <!-- ENTREGABLES VIEW -->
-<divid="view-entregables" style="display:none;min-height:100vh;padding-bottom:80px">
+<divid="view-entregables" style="display:none;position:fixed;top:57px;left:0;right:0;bottom:0;overflow-y:auto;background:#0F0E0C;z-index:50;padding-bottom:80px">
   <div style="padding:32px 20px 20px">
     <div style="font-size:9px;font-weight:700;letter-spacing:0.25em;text-transform:uppercase;color:#E8571A;border:1px solid #E8571A;padding:4px 10px;display:inline-block;margin-bottom:20px">Sistema de entregables</div>
     <div style="font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:300;color:#FAF8F5;line-height:1.1;margin-bottom:10px">Documentos<br>que generan<br><em style="font-style:italic;color:#E8571A">confianza.</em></div>
@@ -2826,19 +2826,24 @@
   function switchTab(tab) {
     const tabs = document.querySelectorAll('.tab-btn');
     tabs.forEach(t => t.classList.remove('active'));
-    document.getElementById('view-proceso').style.display = 'none';
-    document.getElementById('view-formularios').style.display = 'none';
-    document.getElementById('view-entregables').style.display = 'none';
+
+    const vp = document.getElementById('view-proceso');
+    const vf = document.getElementById('view-formularios');
+    const ve = document.getElementById('view-entregables');
+
+    if (vp) vp.style.display = 'none';
+    if (vf) vf.style.display = 'none';
+    if (ve) ve.style.display = 'none';
 
     if (tab === 'proceso') {
-      tabs[0].classList.add('active');
-      document.getElementById('view-proceso').style.display = 'block';
+      if (tabs[0]) tabs[0].classList.add('active');
+      if (vp) vp.style.display = 'block';
     } else if (tab === 'formularios') {
-      tabs[1].classList.add('active');
-      document.getElementById('view-formularios').style.display = 'block';
+      if (tabs[1]) tabs[1].classList.add('active');
+      if (vf) vf.style.display = 'block';
     } else if (tab === 'entregables') {
-      tabs[2].classList.add('active');
-      document.getElementById('view-entregables').style.display = 'block';
+      if (tabs[2]) tabs[2].classList.add('active');
+      if (ve) ve.style.display = 'block';
     }
   }
 
